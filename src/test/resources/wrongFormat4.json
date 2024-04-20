@@ -1,0 +1,12 @@
+{
+  "PolicyName": "NoActionPolicy",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::my-bucket/*"
+      }
+    ]
+  }
+}

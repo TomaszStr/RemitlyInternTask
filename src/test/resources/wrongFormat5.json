@@ -1,0 +1,97 @@
+{
+  "PolicyName": "AdvancedIAMPolicyWithSyntaxError",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::public-bucket/*",
+          "arn:aws:s3:::backup-bucket/*"
+        ]
+      },
+      {
+        "Effect": [
+          "Allow",
+          "Deny"
+        ],
+        "Action": [
+          "sqs:SendMessage",
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage"
+        ],
+        "Resource": [
+          "arn:aws:sqs:region:account-id:public-queue",
+          "arn:aws:sqs:region:account-id:backup-queue"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "lambda:InvokeFunction",
+          "lambda:CreateFunction",
+          "lambda:DeleteFunction"
+        ],
+        "Resource": [
+          "arn:aws:lambda:region:account-id:function/public-function",
+          "arn:aws:lambda:region:account-id:function/backup-function"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "dynamodb:GetItem",
+          "dynamodb:PutItem"
+        ],
+        "Resource": [
+          "arn:aws:dynamodb:region:account-id:table/public-table",
+          "arn:aws:dynamodb:region:account-id:table/backup-table"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": "sns:Publish",
+        "Resource": "arn:aws:sns:region:account-id:public-topic"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "iam:PassRole",
+          "iam:CreateRole",
+          "iam:AttachRolePolicy"
+        ],
+        "Resource": [
+          "arn:aws:iam::account-id:role/public-role",
+          "arn:aws:iam::account-id:role/backup-role"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "iam:PassedToService": "lambda.amazonaws.com"
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "iam:CreatePolicy",
+          "iam:AttachUserPolicy"
+        ],
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": {
+            "iam:CreatePolicyVersion": "true"
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Action": "lambda:InvokeFunction",
+        "Resource": "arn:aws:lambda:region:account-id:function/invalid-function"
+      }
+    ]
+  }
+}

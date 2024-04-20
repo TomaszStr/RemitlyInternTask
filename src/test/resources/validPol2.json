@@ -1,0 +1,21 @@
+{
+  "PolicyName": "pol2",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ThirdStatement",
+        "Effect": "Allow",
+        "Action": [
+          "s3:List*",
+          "s3:Get*"
+        ],
+        "Resource": [
+          "arn:aws:s3:::confidential-data",
+          "arn:aws:s3:::confidential-data/*"
+        ],
+        "Condition": {"Bool": {"aws:MultiFactorAuthPresent": "true"}}
+      }
+    ]
+  }
+}

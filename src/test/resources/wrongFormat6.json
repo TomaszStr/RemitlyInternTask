@@ -1,0 +1,22 @@
+{
+  "PolicyName": "pol2",
+  "PolicyDocument": {
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:List*",
+          "s3:Get*"
+        ],
+        "Resource": [
+          "arn:aws:s3:::confidential-data",
+          "arn:aws:s3:::confidential-data/*"
+        ],
+        "Condition": {
+          "Bool": {"aws:MultiFactorAuthPresent": "true"},
+          "StringLike": {"s3:prefix": ["janedoe/*"]}
+        }
+      }
+    ]
+  }
+}
