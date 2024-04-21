@@ -3,7 +3,7 @@
 ## Description
 
 The `JSON Validator` program is a simple tool for validating the structure of a AWS::IAM::Role Policy JSON file. It checks whether the JSON contains the correct fields.
-If JSON file format is incorrect it informs about it, if it's correct it checks whether 
+If JSON file format is incorrect it informs about it, if it's correct it checks whether the resource field contains single "*" if so it returns false, otherwise true.
 
 
 ## Installation
