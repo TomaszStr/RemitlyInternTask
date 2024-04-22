@@ -8,11 +8,13 @@ If JSON file format is incorrect it informs about it, if it's correct it checks 
 
 ## Installation
 
-1. Clone this repository:
+1. Clone this repository.
 
-2. You can use program with fat-jar:
+2. You can use program with fat-jar.
 
 java -jar pathToFile\RemitlyInternTask-1.0-jar-with-dependencies.jar
+
+3. You can also put everything in Intellij and run program and tests with it.
 
 ## TESTS
 
